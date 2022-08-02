@@ -1,0 +1,13 @@
+- hosts: client
+  user: apple
+  gather_facts: false
+  tasks:
+    - name: Copy a directory into place
+      copy:
+        src: /home/apple/sync/release/guser  
+        dest: /opt/deploy/dev
+        mode: "0500"
+    - name: Change the working directory before executing the command.
+      shell: ./run.sh
+      args:
+        chdir: /opt/deploy/dev/guser
